@@ -4,4 +4,5 @@
     template: "footer/show/templates/show_footer"
     id: "footer"
 
-    modelEvents: "change:full_name": "render"
+    modelEvents:
+      "change": "render"
