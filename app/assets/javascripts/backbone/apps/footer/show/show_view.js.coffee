@@ -3,3 +3,5 @@
   class Show.Footer extends Marionette.ItemView
     template: "footer/show/templates/show_footer"
     id: "footer"
+
+    modelEvents: "change:full_name": "render"
