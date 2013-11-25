@@ -2,15 +2,14 @@
 
   List.Controller =
     listUsers: ->
-      users = App.request "get:user:entities"
+      App.request "get:user:entities", (users) =>
+        @layout = @getLayoutView()
 
-      @layout = @getLayoutView()
-
-      @layout.on "show", =>
-        @showPanel users
-        @showUsers users
-        
-      App.mainRegion.show @layout
+        @layout.on "show", =>
+          @showPanel users
+          @showUsers users
+          
+        App.mainRegion.show @layout
 
     showPanel: (users) ->
       panelView = @getPanelView users

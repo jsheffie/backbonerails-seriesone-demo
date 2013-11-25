@@ -11,12 +11,10 @@
     template: "users/list/templates/_panel"
 
     # Wire up to collection events ( for counts )
-    collectionEvents:
-      "reset": "render"
+    # Dont need this when callback function is in place
+    #collectionEvents:
+    #  "reset": "render"
       
-#    modelEvents:
-#      "change": "render"
-            
   class List.User extends App.Views.ItemView
     template: "users/list/templates/_user"
     tagName: "tr"

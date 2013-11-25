@@ -11,15 +11,16 @@
     setCurrentUser: ( currentUser ) ->
       new Entities.User currentUser
       
-    getUserEntities: ->
+    getUserEntities: ( callback ) ->
       users = new Entities.UsersCollection
-      #users.fetch( )
-      users.fetch(reset: true) # Hack to get numbers to work.( panel collection)
-      users
+      users.fetch
+      #users.fetch( { reset: true }) # Hack to get numbers to work.( panel collection)
+        success: ->
+          callback users
           
   App.reqres.setHandler "set:current:user", (currentUser) ->
     API.setCurrentUser currentUser
 
-  App.reqres.setHandler "get:user:entities", ->
-    API.getUserEntities()
+  App.reqres.setHandler "get:user:entities", ( callback )  ->
+    API.getUserEntities callback
     
