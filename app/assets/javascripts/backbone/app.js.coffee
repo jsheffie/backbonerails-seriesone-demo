@@ -1,6 +1,9 @@
 @Demo = do (Backbone, Marionette) ->
   App = new Marionette.Application
 
+  #App.rootRoute = "users"
+  App.rootRoute = Routes.users_path()
+    
   # I got passed in a user object ( from rails )
   App.on "initialize:before", ( options ) ->
     @currentUser = App.request "set:current:user", options.currentUser
@@ -22,5 +25,7 @@
   App.on "initialize:after", ( options ) ->
     if Backbone.history
       Backbone.history.start()
+      @navigate(@rootRoute, trigger: true) if @getCurrentRoute() is ""
+      #Backbone.history.navigate "users" if Backbone.history.fragement is ""
 
   App
